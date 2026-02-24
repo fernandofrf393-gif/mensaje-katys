@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Para ti Katy🤍</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(rgba(244,231,211,0.95), rgba(244,231,211,0.95)),
+  url('https://www.transparenttextures.com/patterns/aged-paper.png');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  background: rgba(255,255,255,0.96);
+  width: 92%;
+  max-width: 720px;
+  padding: 50px;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  text-align: center;
+  animation: fadeIn 1.8s ease;
+}
+
+h1 {
+  color: #6e1c1c;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+p {
+  font-size: 19px;
+  line-height: 1.8;
+}
+
+button {
+  background-color: #6e1c1c;
+  color: white;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 12px;
+  transition: 0.4s;
+}
+
+button:hover {
+  background-color: #922b2b;
+  transform: scale(1.05);
+}
+
+iframe {
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 18px;
+  transition: transform 0.5s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+.hidden {
+  display: none;
+}
+
+.fade {
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="intro">
+
+<h1>Si estás aquí, es porque resiviste mis flores.</h1>
+
+<p>
+Gracias por aceptar estas flores.<br>
+Prometo que no es para presionarte…<br>
+solo queria comunicarme contigo.
+</p>
+
+<button onclick="enter()">Entrar 🤍</button>
+
+</div>
+
+<div class="card hidden" id="content">
+
+<h1>Lo que guardé para ti</h1>
+
+<button onclick="showVideo()">🎥 Ver video</button>
+<button onclick="showGallery()">🖼 Ver imagenes</button>
+
+<div id="videoSection" class="hidden fade">
+<iframe
+src="https://drive.google.com/file/d/1gk-ofEcXk9sveI2GeatGLDu17D2tNX_D/preview" 
+allow="autoplay">
+</iframe>
+</div>
+
+<div id="gallerySection" class="gallery hidden fade">
+<img src="foto1.png">
+<img src="foto2.png">
+</div>
+
+</div>
+
+<div class="card hidden" id="limitMessage">
+
+<h1>Este mensaje ya cumplió su propósito.</h1>
+
+<p>
+Lo que tenía que decir, ya fue dicho.<br>
+Y lo que fue real, siempre será verdadero 🤍
+</p>
+
+</div>
+
+<script>
+
+const namespace = "fernando_katy_vintage_final_2026";
+
+fetch(`https://api.countapi.xyz/hit/${namespace}/visitas`)
+.then(response => response.json())
+.then(data => {
+    if(data.value > 7) {
+        document.getElementById("intro").classList.add("hidden");
+        document.getElementById("limitMessage").classList.remove("hidden");
+    }
+});
+
+function enter(){
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("content").classList.remove("hidden");
+
+    var music = document.getElementById("bgMusic");
+    music.volume = 0.25;
+    music.play();
+}
+
+function showVideo(){
+    document.getElementById("videoSection").classList.remove("hidden");
+    document.getElementById("gallerySection").classList.add("hidden");
+}
+
+function showGallery(){
+    document.getElementById("gallerySection").classList.remove("hidden");
+    document.getElementById("videoSection").classList.add("hidden");
+}
+
+</script>
+
+</body>
+</html>
